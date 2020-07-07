@@ -15,7 +15,7 @@ class filt_to_image():
     self.conv_layers=[layer.name for layer in self.model.layers if ("conv" in layer.name)]
     self.nlayers=len(self.conv_layers)
     self.equ_fil=[0]*self.nlayers
-    self.get_equ_fil(job.nlayers-1);
+    self.get_equ_fil(self.nlayers-1);
   def get_equ_fil(self,rng,pad_acc=0):
     fil=self.model.get_layer(self.conv_layers[rng]).get_weights()[0]
     PAD=(fil.shape[0]-1)//2
