@@ -34,7 +34,7 @@ class filt_to_image():
                     left=0,right=1,bottom=0, top=1)
     ## original picture
     total_samples=self.equ_fil[rng].shape[3]
-    order=np.linspace(1,total_samples,total_samples,dtype="int")
+    order=np.linspace(1,total_samples-1,total_samples,dtype="int")
     random.shuffle(order)
     i = 1
     for sample in order[0:n_samples]:
