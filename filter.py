@@ -3,11 +3,14 @@
 # job=filt_to_image(model) # establish class and list convolution layers
 # job.get_equ_fil(n) #calculate get_equ_filter for each possible layers (~layer n)
 # job.plot_eqfil(n,n_samples) # plot the effect of equivalent of n th layer 
+import numpy as np
+import tensorflow as tf
+import matplotlib.pyplot as plt
+import random
 class filt_to_image():
   
   def __init__(self,model):
-    import numpy as np
-    import tensorflow as tf
+
     self.model=model
     self.conv_layers=[layer.name for layer in self.model.layers if ("conv" in layer.name)]
     self.nlayers=len(self.conv_layers)
@@ -23,8 +26,7 @@ class filt_to_image():
     self.equ_fil[rng]=tf.nn.conv2d(img, fil, strides= [1, 1, 1, 1], padding="SAME")
     return self.equ_fil[rng]
   def plot_eqfil(self,rng=0,n_samples=25):
-    import matplotlib.pyplot as plt
-    import random
+
     x_a=np.ceil(np.sqrt(n_samples))
     y_a=np.floor(np.sqrt(n_samples))
     fig = plt.figure(figsize=(10,10))
